@@ -6,7 +6,7 @@
 #    By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 16:42:35 by anjose-d          #+#    #+#              #
-#    Updated: 2022/04/13 15:10:37 by anjose-d         ###   ########.fr        #
+#    Updated: 2022/04/15 19:04:22 by anjose-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ HEADER			=	$(MAIN_INCS)/push_swap.h
 
 #COMPILER VARIABLES
 CC				=	gcc
-CFLAGS			=	#-Wall -Werror -Wextra
+CFLAGS			=	-Wall -Werror -Wextra
 
 # LIBFT VARIABLES
 LIBFT			=	ft
@@ -26,7 +26,8 @@ LIB_LINK		=	-L$(LIBFT_DIR) -l$(LIBFT)
 
 # SOURCES AND OBJECTS
 SRCS_DIR		=	./srcs
-SRCS			=	main.c
+SRCS			=	main.c \
+					arg_check.c utils1.c
 
 OBJS_DIR		=	./objs
 OBJS			=	$(SRCS:.c=.o)
@@ -41,7 +42,7 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c  $(HEADER)
 
 $(NAME): $(OBJS_PATH)
 	make -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) $< $(INCS) $(LIB_LINK)  -o $@
+	$(CC) $(CFLAGS) $^ $(INCS) $(LIB_LINK)  -o $@
 	
 all: $(NAME)
 	
@@ -49,11 +50,14 @@ clean:
 	rm -rf $(OBJS_DIR)
 	make $@ -C $(LIBFT_DIR)
 
-fclean: $(clean)
-	rm $(NAME)
+fclean: clean
+	rm -f $(NAME)
 	make $@ -C $(LIBFT_DIR)
+
+valgrind: $(NAME)
+	valgrind ./$(NAME) 1 2 3
 	
-re: $(fclean) $(all)
+re: fclean all
 
 .PHONY: all clean fclean re
 

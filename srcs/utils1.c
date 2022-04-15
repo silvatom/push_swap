@@ -1,27 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 16:42:46 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/04/15 18:57:22 by anjose-d         ###   ########.fr       */
+/*   Created: 2022/04/15 18:56:21 by anjose-d          #+#    #+#             */
+/*   Updated: 2022/04/15 19:04:46 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "libft.h"
+int	str_spaced(char *str)
+{
+	int	i;
 
-#define TRUE 1
-#define FALSE 0
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ' || str[i] == '\n' || str[i] == '\v'
+			|| str[i] == '\f' || str[i] == '\r')
+			return (TRUE);
+		i++;
+	}
+	return (FALSE);
+}
 
-int	arg_check(int argc, char *argv[], char ***splitted_args);
+int	valid_number(char *str)
+{
+	int	i;
 
-/* UTILS */
-int	str_spaced(char *str);
-int	valid_number(char *str);
-
-#endif
+	i = 0;
+	while (str[i])
+	{
+		if (i == 0 && str[i] == '-')
+			i++;
+		if (!ft_isdigit(str[i]))
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
