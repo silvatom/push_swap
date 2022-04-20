@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:56:21 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/04/15 19:04:46 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/04/19 23:37:12 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	valid_number(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (i == 0 && str[i] == '-')
+		if (i == 0 && (str[i] == '-' || str[i] == '+'))
 			i++;
 		if (!ft_isdigit(str[i]))
 			return (FALSE);

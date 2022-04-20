@@ -6,7 +6,7 @@
 #    By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 16:42:35 by anjose-d          #+#    #+#              #
-#    Updated: 2022/04/15 19:04:22 by anjose-d         ###   ########.fr        #
+#    Updated: 2022/04/20 00:32:14 by anjose-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ HEADER			=	$(MAIN_INCS)/push_swap.h
 
 #COMPILER VARIABLES
 CC				=	gcc
-CFLAGS			=	-Wall -Werror -Wextra
+CFLAGS			=	#-Wall -Werror -Wextra
 
 # LIBFT VARIABLES
 LIBFT			=	ft
@@ -32,22 +32,23 @@ SRCS			=	main.c \
 OBJS_DIR		=	./objs
 OBJS			=	$(SRCS:.c=.o)
 OBJS_PATH		=	$(addprefix $(OBJS_DIR)/, $(OBJS))
+SRCS_PATH		=	$(addprefix $(SRCS_DIR)/, $(SRCS))
 
 # ALL INCLUDES
 INCS			=	-I $(MAIN_INCS) -I $(LIBFT_INC_DIR)
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c  $(HEADER)
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADER)
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
 $(NAME): $(OBJS_PATH)
-	make -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
 	$(CC) $(CFLAGS) $^ $(INCS) $(LIB_LINK)  -o $@
 	
 all: $(NAME)
 	
 clean:
-	rm -rf $(OBJS_DIR)
+	rm -rf $(OBJS_DIR) debug
 	make $@ -C $(LIBFT_DIR)
 
 fclean: clean
@@ -55,10 +56,14 @@ fclean: clean
 	make $@ -C $(LIBFT_DIR)
 
 valgrind: $(NAME)
-	valgrind ./$(NAME) 1 2 3
+	valgrind --track-origins=yes ./$(NAME) 1 2 "1 -2147483650"
+	
+debug:
+	$(CC) -g $(SRCS_PATH) $(INCS) $(LIB_LINK) -o $@
+	gdb --tui ./$@ 1 2 "1 -2147483650"
 	
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re debug
 
 

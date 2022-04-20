@@ -6,71 +6,126 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:46:42 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/04/15 19:02:23 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/04/20 00:30:01 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/* check equal results */
+static int	nbr_validation(char ***args);
+/* do simple validations to the arguments given */
+static int	check_invalid_arg(char *raw_arg, char **arg);
+/* append 'arg' into 'all_args' */
+static void	join_args(char **actual_args, char *new_arg, int index);
+/* little abstraction to follow the norm */
+static int	nbr_checking(char ***splitted_args);
 
 int	arg_check(int argc, char *argv[], char ***splitted_args)
 {
 	int		i;
 	char	*arg;
 	char	*all_args;
-	char	*temp;
-	char	**check_args;
 
-	if (argc < 2)
-		return (-1);
-	i = 1;
+	*splitted_args = NULL;
+	i = 0;
 	all_args = ft_strdup("");
-	while (i < argc)
+	while (++i < argc)
 	{
-		if (str_spaced(argv[i]))
+		if (check_invalid_arg(argv[i], &arg))
 		{
-			check_args = ft_split(argv[i], ' ');
-			int	x = 0;
-			while (check_args[x])
-			{
-				if (!valid_number(check_args[x]))
-				{
-					destroy_matrix(check_args);
-					return (-1);
-				}
-				x++;
-			} 
-			arg = ft_strdup(argv[i]);
+			free(all_args);
+			return (-1);
 		}
-		else
-		{
-			if (ft_strlen(argv[i]) == 1)
-			{
-				if (!ft_isdigit(argv[i][0]))
-					return (-1);
-				arg = ft_strdup(argv[i]);
-			}
-			else
-			{
-				if (!valid_number(argv[i]))
-					return (-1);
-				arg = ft_strdup(argv[i]);
-			}
-		}
-		// colocar 'arg' in 'all_args'
-		if (i != 1)
-		{
-			temp = all_args;
-			all_args = ft_strjoin(temp, " ");
-			free(temp);
-		}
-		temp = all_args;
-		all_args = ft_strjoin(all_args, arg);
+		join_args(&all_args, arg, i);
 		free(arg);
-		free(temp);
-		i++;
 	}
-	ft_printf("%s!\n", all_args);
 	*splitted_args = ft_split(all_args, ' ');
 	free(all_args);
+	if (nbr_checking(splitted_args))
+		return (-1);
+	return (0);
+}
+
+static int	nbr_checking(char ***splitted_args)
+{
+	if (nbr_validation(splitted_args))
+	{
+		destroy_matrix((*splitted_args));
+		*splitted_args = NULL;
+		return (-1);
+	}
+}
+
+static void	join_args(char **actual_args, char *new_arg, int index)
+{
+	char	*temp;
+
+	if (index != 1)
+	{
+		temp = *actual_args;
+		*actual_args = ft_strjoin(temp, " ");
+		free(temp);
+	}
+	temp = *actual_args;
+	*actual_args = ft_strjoin(temp, new_arg);
+	free(temp);
+}
+
+static int	nbr_validation(char ***args)
+{
+	int			i;
+	int			j;
+	char		*check_str;
+	long long	nbr;
+
+	if (*args)
+	{
+		i = 0;
+		while ((*args)[i])
+		{
+			nbr = ft_atoi_llong((*args)[i]);
+			if (nbr > INT_MAX || nbr < INT_MIN)
+				return (-1);
+			j = i + 1;
+			check_str = (*args)[i];
+			while ((*args)[j])
+			{
+				if (ft_strncmp((*args)[j], check_str, 100) == 0)
+					return (-1);
+				j++;
+			}
+			i++;
+		}
+	}
+	return (0);
+}
+
+static int	check_invalid_arg(char *raw_arg, char **arg)
+{
+	char	**check_args;
+	int		i;
+
+	if (str_spaced(raw_arg))
+	{
+		check_args = ft_split(raw_arg, ' ');
+		i = 0;
+		while (check_args[i])
+		{
+			if (!valid_number(check_args[i]))
+			{
+				destroy_matrix(check_args);
+				return (-1);
+			}
+			i++;
+		}
+		destroy_matrix(check_args);
+	}
+	else
+	{
+		if (!valid_number(raw_arg))
+			return (-1);
+	}
+	*arg = ft_strdup(raw_arg);
 	return (0);
 }
