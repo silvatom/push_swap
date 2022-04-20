@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:42:33 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/04/19 23:47:54 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/04/20 00:47:29 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char *argv[])
 	if (argc < 2 || arg_check(argc, argv, &args_str))
 	{
 		ft_printf("Error\n");
-		destroy_matrix(args_str);
+		ft_destroy_matrix(args_str);
 		return (-1);
 	}
 	i = 0;
@@ -31,7 +31,7 @@ int	main(int argc, char *argv[])
 			ft_printf("%d: %s\n", i, args_str[i]);
 			i++;
 		}
-		destroy_matrix(args_str);
+		ft_destroy_matrix(args_str);
 	}
 	
 	return (0);

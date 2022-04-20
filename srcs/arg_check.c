@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:46:42 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/04/20 00:30:01 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/04/20 00:47:06 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	nbr_checking(char ***splitted_args)
 {
 	if (nbr_validation(splitted_args))
 	{
-		destroy_matrix((*splitted_args));
+		ft_destroy_matrix((*splitted_args));
 		*splitted_args = NULL;
 		return (-1);
 	}
@@ -114,12 +114,12 @@ static int	check_invalid_arg(char *raw_arg, char **arg)
 		{
 			if (!valid_number(check_args[i]))
 			{
-				destroy_matrix(check_args);
+				ft_destroy_matrix(check_args);
 				return (-1);
 			}
 			i++;
 		}
-		destroy_matrix(check_args);
+		ft_destroy_matrix(check_args);
 	}
 	else
 	{
