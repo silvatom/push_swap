@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:46:42 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/04/20 00:47:06 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/06 02:09:25 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static int	nbr_checking(char ***splitted_args)
 		*splitted_args = NULL;
 		return (-1);
 	}
+	return (0);
 }
 
 static void	join_args(char **actual_args, char *new_arg, int index)

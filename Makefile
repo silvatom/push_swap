@@ -6,7 +6,7 @@
 #    By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 16:42:35 by anjose-d          #+#    #+#              #
-#    Updated: 2022/05/05 12:10:16 by anjose-d         ###   ########.fr        #
+#    Updated: 2022/05/06 02:10:23 by anjose-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ HEADER			=	$(MAIN_INCS)/push_swap.h
 
 #COMPILER VARIABLES
 CC				=	gcc
-CFLAGS			=	#-Wall -Werror -Wextra
+CFLAGS			=	-Wall -Werror -Wextra
 
 # LIBFT VARIABLES
 LIBFT			=	ft
@@ -25,10 +25,15 @@ LIBFT_INC_DIR	=	$(addprefix $(LIBFT_DIR)/, includes)
 LIB_LINK		=	-L$(LIBFT_DIR) -l$(LIBFT)
 
 # SOURCES AND OBJECTS
+SRCSOPS_DIR		=	ops
+SRCOPS			=	px.c rrx.c rx.c sx.c
+SRCS_OPS		=	$(addprefix $(SRCSOPS_DIR)/, $(SRCOPS))
+
 SRCS_DIR		=	./srcs
 SRCS			=	main.c \
 					arg_check.c utils1.c \
-					stack.c
+					stack.c \
+					$(SRCS_OPS) \
 
 OBJS_DIR		=	./objs
 OBJS			=	$(SRCS:.c=.o)
@@ -44,7 +49,7 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADER)
 
 $(NAME): $(OBJS_PATH)
 	@make -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) $^ $(INCS) $(LIB_LINK)  -o $@
+	$(CC) $(CFLAGS) $^ $(INCS) $(LIB_LINK) -o $@
 	
 all: $(NAME)
 	
