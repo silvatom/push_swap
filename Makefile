@@ -6,7 +6,7 @@
 #    By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 16:42:35 by anjose-d          #+#    #+#              #
-#    Updated: 2022/04/20 00:32:14 by anjose-d         ###   ########.fr        #
+#    Updated: 2022/05/05 12:10:16 by anjose-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ LIB_LINK		=	-L$(LIBFT_DIR) -l$(LIBFT)
 # SOURCES AND OBJECTS
 SRCS_DIR		=	./srcs
 SRCS			=	main.c \
-					arg_check.c utils1.c
+					arg_check.c utils1.c \
+					stack.c
 
 OBJS_DIR		=	./objs
 OBJS			=	$(SRCS:.c=.o)

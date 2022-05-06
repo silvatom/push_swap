@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   px.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 16:42:33 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/04/20 00:50:21 by anjose-d         ###   ########.fr       */
+/*   Created: 2022/05/05 20:48:34 by anjose-d          #+#    #+#             */
+/*   Updated: 2022/05/06 01:39:34 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char *argv[])
+void	px(t_stack *stack_a, t_stack *stack_b, char const *op)
 {
-	char	**args_str;
-	int		i;
-	
-	if (argc < 2 || arg_check(argc, argv, &args_str))
+	int	popped;
+
+	if (ft_strncmp(op, "pa", ft_strlen(op)) == 0)
 	{
-		ft_printf("Error\n");
-		ft_destroy_matrix(args_str);
-		return (-1);
-	}
-	i = 0;
-	if (args_str)
-	{
-		while (args_str[i])
+		if (!isEmpty(stack_b->node))
 		{
-			ft_printf("%d: %s\n", i, args_str[i]);
-			i++;
+			popped = stack_pop(stack_b);
+			stack_push(stack_a, popped);
 		}
-		ft_destroy_matrix(args_str);
 	}
-	
-	return (0);
+	else if (ft_strncmp(op, "pb", ft_strlen(op)) == 0)
+	{
+		if (!isEmpty(stack_a->node))
+		{
+			popped = stack_pop(stack_a);
+			stack_push(stack_b, popped);
+		}
+	}
 }
