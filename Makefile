@@ -6,7 +6,7 @@
 #    By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 16:42:35 by anjose-d          #+#    #+#              #
-#    Updated: 2022/05/06 02:10:23 by anjose-d         ###   ########.fr        #
+#    Updated: 2022/05/17 15:09:42 by anjose-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ HEADER			=	$(MAIN_INCS)/push_swap.h
 
 #COMPILER VARIABLES
 CC				=	gcc
-CFLAGS			=	-Wall -Werror -Wextra
+CFLAGS			=	#-Wall -Werror -Wextra
 
 # LIBFT VARIABLES
 LIBFT			=	ft
@@ -32,7 +32,10 @@ SRCS_OPS		=	$(addprefix $(SRCSOPS_DIR)/, $(SRCOPS))
 SRCS_DIR		=	./srcs
 SRCS			=	main.c \
 					arg_check.c utils1.c \
-					stack.c \
+					stack.c feed_stack.c sort_stack.c \
+					short_sort.c large_sort.c \
+					sort_elems.c \
+					../libft/srcs/ft_dlstnew.c \
 					$(SRCS_OPS) \
 
 OBJS_DIR		=	./objs
@@ -62,14 +65,15 @@ fclean: clean
 	make $@ -C $(LIBFT_DIR)
 
 valgrind: $(NAME)
-	valgrind --track-origins=yes ./$(NAME) 1 2 "1 -2147483650"
+	$(CC) -g $(SRCS_PATH) $(INCS) $(LIB_LINK) -o $@
+	valgrind -s --track-origins=yes --leak-check=full ./$@ 1 2 3
 	
 debug:
 	$(CC) -g $(SRCS_PATH) $(INCS) $(LIB_LINK) -o $@
-	gdb --tui ./$@ 1 2 "1 -2147483650"
+	gdb --tui ./$@ 2 1 3
 	
 re: fclean all
 
-.PHONY: all clean fclean re debug
+.PHONY: all clean fclean re debug valgrind
 
 

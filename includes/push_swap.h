@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:42:46 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/06 01:59:07 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/18 21:13:53 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 
 # include "libft.h"
 
-#define TRUE 1
-#define FALSE 0
+# ifndef TRUE
+#  define TRUE 1
+# endif
+# ifndef FALSE
+#  define FALSE 0
+# endif
 
 # ifndef INT_MAX
 #  define INT_MAX __INT_MAX__
@@ -24,6 +28,8 @@
 # ifndef INT_MIN
 #  define INT_MIN (-__INT_MAX__ -1)
 # endif
+
+#define CHUNKS 3
 
 typedef struct s_dlist t_node;
 
@@ -33,25 +39,58 @@ typedef struct s_stack
 	t_node	*head;
 }				t_stack;
 
+typedef struct s_aux
+{
+	char	**args_raw;
+	int		*args_sorted;
+	t_list	*ops;
+	int		argc;
+}				t_aux;
+
+typedef	struct s_sort_aux
+{
+	int		ck_end1;
+	int		ck_end2;
+	int		elem2mv;
+	int		idx;
+	char	*mv;
+	int		mv_qtd;
+	int		has_elem;
+}				t_sort_aux;
 
 
-int	arg_check(int argc, char *argv[], char ***args);
+int	arg_check(int argc, char *argv[], t_aux *args_aux);
 
 /* UTILS */
-int	str_spaced(char *str);
-int	valid_number(char *str);
+int		str_spaced(char *str);
+int		valid_number(char *str);
+void	stack_init(t_stack *stack);
+char	*ops_str(t_aux *args_aux);
+
+void	sort_elems(t_stack *stack, t_aux *arg_aux);
 
 /* STACK FUNCTIONS */
-int	stack_push(t_stack *stack, int data);
-int	stack_pop(t_stack *stack);
-int	isEmpty(t_node *lst);
+int		stack_push(t_stack *stack, int data);
+int		stack_pop(t_stack *stack);
+int		is_empty(t_node *lst);
+int		is_sorted_desc(t_stack *stack);
+int		has_element(t_stack *stack, int elem);
 
 /* PUSH SWAP OPERATIONS */
-void	sx(t_stack *stack);
-void	px(t_stack *stack_a, t_stack *stack_b, char const *op);
-void	rx(t_stack *stack);
-void	rr(t_stack *stack_a, t_stack *stack_b);
-void	rrx(t_stack *stack);
-void	rrr(t_stack *stack_a, t_stack *stack_b);
+void	sx(t_stack *stack, t_list **ops, const char *op);
+void	ss(t_stack *stack_a, t_stack *stack_b, t_list **ops);
+void	px(t_stack *stack_a, t_stack *stack_b, t_list **ops, char const *op);
+void	rx(t_stack *stack, t_list **ops, const char *op);
+void	rr(t_stack *stack_a, t_stack *stack_b, t_list **ops);
+void	rrx(t_stack *stack, t_list **ops, const char *op);
+void	rrr(t_stack *stack_a, t_stack *stack_b, t_list **ops);
+
+/* PROJECT SOURCES */
+void	feed_stack(t_stack *stack_a, t_aux *args_aux);
+void	sort_stack(t_stack *stack_a, t_aux *args_aux);
+
+/* SORTING */
+void	short_sort(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux);
+void	large_sort(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux);
 
 #endif

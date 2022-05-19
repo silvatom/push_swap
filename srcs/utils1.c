@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:56:21 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/04/20 00:47:15 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/18 21:07:17 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,29 @@ int	valid_number(char *str)
 		i++;
 	}
 	return (TRUE);
+}
+
+void	stack_init(t_stack *stack)
+{
+	stack->head = NULL;
+	stack->node = NULL;
+}
+
+char	*ops_str(t_aux *args_aux)
+{
+	char	*ret;
+	char	*tmp;
+	t_list	*head;
+
+	ret = ft_strdup("");
+	head = args_aux->ops;
+	while (args_aux->ops)
+	{
+		tmp = ret;
+		ret = ft_strjoin(ret, args_aux->ops->content);
+		free(tmp);
+		args_aux->ops = args_aux->ops->next;
+	}
+	args_aux->ops = head;
+	return (ret);
 }

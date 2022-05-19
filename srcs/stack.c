@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:30:26 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/05 17:41:56 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/18 21:14:31 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	stack_pop(t_stack *stack)
 {
 	int	popped;
 
-	if (isEmpty(stack->node))
+	if (is_empty(stack->node))
 		return (INT_MIN);
 	popped = stack->head->elem;
 	ft_dlstrm_node(&stack->node, stack->head);
@@ -39,7 +39,45 @@ int	stack_pop(t_stack *stack)
 	return (popped);
 }
 
-int	isEmpty(t_node *lst)
+int	is_empty(t_node *lst)
 {
 	return !lst;
+}
+
+int	is_sorted_desc(t_stack *stack)
+{
+	t_node	*current;
+	
+	if (stack)
+	{
+		if (stack->node == NULL)
+			return (FALSE);
+		while (stack->node->next != NULL)
+		{
+			current = stack->node->next;
+			if (current->elem <= stack->node->elem)
+			{
+				stack->node = stack->head;
+				return (FALSE);
+			}
+			stack->node = stack->node->next;
+		}
+	}
+	stack->node = stack->head;
+	return (TRUE);
+}
+
+int	has_element(t_stack *stack, int elem)
+{
+	while (stack->node)
+	{
+		if (stack->node->elem == elem)
+		{
+			stack->node = stack->head;
+			return (1);
+		}
+		stack->node = stack->node->next;
+	}
+	stack->node = stack->head;
+	return (0);
 }
