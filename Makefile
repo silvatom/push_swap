@@ -6,7 +6,7 @@
 #    By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 16:42:35 by anjose-d          #+#    #+#              #
-#    Updated: 2022/05/17 15:09:42 by anjose-d         ###   ########.fr        #
+#    Updated: 2022/05/18 21:47:22 by anjose-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,14 +57,14 @@ $(NAME): $(OBJS_PATH)
 all: $(NAME)
 	
 clean:
-	rm -rf $(OBJS_DIR) debug
+	rm -rf $(OBJS_DIR) debug valgrind
 	make $@ -C $(LIBFT_DIR)
 
 fclean: clean
 	rm -f $(NAME)
 	make $@ -C $(LIBFT_DIR)
 
-valgrind: $(NAME)
+valgrind:
 	$(CC) -g $(SRCS_PATH) $(INCS) $(LIB_LINK) -o $@
 	valgrind -s --track-origins=yes --leak-check=full ./$@ 1 2 3
 	
