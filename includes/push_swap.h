@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:42:46 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/18 21:13:53 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/20 19:45:54 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 #  define INT_MIN (-__INT_MAX__ -1)
 # endif
 
-#define CHUNKS 3
+#define CHUNKS 2
 
 typedef struct s_dlist t_node;
 
@@ -66,8 +66,17 @@ int		str_spaced(char *str);
 int		valid_number(char *str);
 void	stack_init(t_stack *stack);
 char	*ops_str(t_aux *args_aux);
-
 void	sort_elems(t_stack *stack, t_aux *arg_aux);
+int		biggest_elem_stack(t_stack *stack);
+int		smallest_elem_stack(t_stack *stack);
+
+/* tirar depois daqui pois era pra ser static */
+void	bring_elem2top(t_stack *stack, t_aux *args_aux, int	elem);
+
+
+void	biggest2top(t_stack *stack, t_aux *args_aux);
+void	smallest2top(t_stack *stack, t_aux *args_aux);
+void	find_middle_spot(t_stack *stack, t_aux *args_aux, int a_elem);
 
 /* STACK FUNCTIONS */
 int		stack_push(t_stack *stack, int data);
