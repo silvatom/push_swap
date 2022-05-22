@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:42:46 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/20 19:45:54 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/21 19:35:43 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # endif
 
 #define CHUNKS 2
+#define UP 1
+#define DOWN -1
 
 typedef struct s_dlist t_node;
 
@@ -71,12 +73,14 @@ int		biggest_elem_stack(t_stack *stack);
 int		smallest_elem_stack(t_stack *stack);
 
 /* tirar depois daqui pois era pra ser static */
-void	bring_elem2top(t_stack *stack, t_aux *args_aux, int	elem);
+void	bring_elem2top(t_stack *stack, t_aux *args_aux, int	elem, char *op);
+int		scnd_biggest_elem(t_stack *stack);
+int		scnd_smallest_elem(t_stack *stack);
 
 
-void	biggest2top(t_stack *stack, t_aux *args_aux);
+void	biggest2top(t_stack *stack, t_aux *args_aux, char *op);
 void	smallest2top(t_stack *stack, t_aux *args_aux);
-void	find_middle_spot(t_stack *stack, t_aux *args_aux, int a_elem);
+void	find_spot(t_stack *stack, t_aux *args_aux, int a_elem, int side);
 
 /* STACK FUNCTIONS */
 int		stack_push(t_stack *stack, int data);

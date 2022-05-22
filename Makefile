@@ -6,7 +6,7 @@
 #    By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 16:42:35 by anjose-d          #+#    #+#              #
-#    Updated: 2022/05/19 17:19:28 by anjose-d         ###   ########.fr        #
+#    Updated: 2022/05/22 10:56:05 by anjose-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ valgrind:
 	
 debug:
 	$(CC) -g $(SRCS_PATH) $(INCS) $(LIB_LINK) -o $@
-	gdb --tui ./$@ 2 1 3
+	gdb --tui ./$@ 0 2 15 3 9 4 1 8
 	
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:56:21 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/20 20:04:37 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/21 17:17:27 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,18 +98,19 @@ int	smallest_elem_stack(t_stack *stack)
 	return (smallest);
 }
 
-void	biggest2top(t_stack *stack, t_aux *args_aux)
+void	biggest2top(t_stack *stack, t_aux *args_aux, char *op)
 {
 	int	biggest;
 	
 	if (ft_dlstsize(stack->head) < 2)
 		return ;
 	biggest = biggest_elem_stack(stack);
-	while (stack->head->elem != biggest)
-	{
-		// find best movement
-		rx(stack, &args_aux->ops, "rb\n");
-	}
+	bring_elem2top(stack, args_aux, biggest, op);
+	// while (stack->head->elem != biggest)
+	// {
+	// 	// find best movement
+	// 	rx(stack, &args_aux->ops, "rb\n");
+	// }
 }
 
 void	smallest2top(t_stack *stack, t_aux *args_aux)
@@ -126,18 +127,52 @@ void	smallest2top(t_stack *stack, t_aux *args_aux)
 	}
 }
 
-void	bring_elem2top(t_stack *stack, t_aux *args_aux, int	elem)
+int	scnd_biggest_elem(t_stack *stack)
+{
+	int	scnd_biggest;
+	int	biggest;
+
+	biggest = biggest_elem_stack(stack);
+	scnd_biggest = stack->head->elem;
+	while (stack->node)
+	{
+		if (scnd_biggest < stack->node->elem && stack->node->elem != biggest)
+			scnd_biggest = stack->node->elem;
+		stack->node = stack->node->next;
+	}
+	stack->node = stack->head;
+	return (scnd_biggest);
+}
+
+int	scnd_smallest_elem(t_stack *stack)
+{
+	int	smallest;
+	int	scnd_smallest;
+
+	smallest = smallest_elem_stack(stack);
+	scnd_smallest = stack->node->elem;
+	while (stack->node)
+	{
+		if (scnd_smallest > stack->node->elem && stack->node->elem != smallest)
+			scnd_smallest = stack->node->elem;
+		stack->node = stack->node->next;
+	}
+	stack->node = stack->head;
+	return (scnd_smallest);
+}
+
+void	bring_elem2top(t_stack *stack, t_aux *args_aux, int	elem, char *op)
 {
 	if (ft_dlstsize(stack->head) < 2)
 		return ;
 	while (stack->head->elem != elem)
 	{
 		// find best movement
-		rx(stack, &args_aux->ops, "rb\n");
+		rx(stack, &args_aux->ops, op);
 	}
 }
 
-void	bring_elem2tail(t_stack *stack, t_aux *args_aux, int	elem)
+void	bring_elem2tail(t_stack *stack, t_aux *args_aux, int elem)
 {
 	t_node	*tail;
 	if (ft_dlstsize(stack->head) < 2)
@@ -152,15 +187,22 @@ void	bring_elem2tail(t_stack *stack, t_aux *args_aux, int	elem)
 	tail = NULL;
 }
 
-void	find_middle_spot(t_stack *stack, t_aux *args_aux, int a_elem)
+void	find_spot(t_stack *stack, t_aux *args_aux, int a_elem, int side)
 {
 	int	i;
 
 	i = 0;
 	while (args_aux->args_sorted[i] != a_elem)
 		i++;
-	i--;
-	while (!has_element(stack, args_aux->args_sorted[i]) && i >= 0)
-		i--;
-	bring_elem2top(stack, args_aux, args_aux->args_sorted[i]);
+	if (side > 0)
+	{
+		while (!has_element(stack, args_aux->args_sorted[i]) && i < args_aux->argc)
+			i += side;
+	}
+	// while (args_aux->args_sorted[i] != a_elem)
+	// 	i++;
+	// i--;
+	// while (!has_element(stack, args_aux->args_sorted[i]) && i >= 0)
+	// 	i--;
+	bring_elem2top(stack, args_aux, args_aux->args_sorted[i], "ra\n");
 }
