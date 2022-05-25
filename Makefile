@@ -6,7 +6,7 @@
 #    By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 16:42:35 by anjose-d          #+#    #+#              #
-#    Updated: 2022/05/22 10:56:05 by anjose-d         ###   ########.fr        #
+#    Updated: 2022/05/24 11:37:13 by anjose-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRCS_OPS		=	$(addprefix $(SRCSOPS_DIR)/, $(SRCOPS))
 SRCS_DIR		=	./srcs
 SRCS			=	main.c \
 					arg_check.c utils1.c \
-					stack.c feed_stack.c sort_stack.c \
+					stack.c feed_stack.c sort_stack.c sort_utils.c \
 					short_sort.c large_sort.c \
 					sort_elems.c \
 					../libft/srcs/ft_dlstnew.c \

@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:42:46 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/21 19:35:43 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/25 13:16:58 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_stack
 {
 	t_node	*node;
 	t_node	*head;
+	char	flag;
 }				t_stack;
 
 typedef struct s_aux
@@ -60,23 +61,36 @@ typedef	struct s_sort_aux
 	int		has_elem;
 }				t_sort_aux;
 
+typedef	struct s_sort
+{
+	int	elem;
+	int	idx;
+	int	mv_qtd;
+	char	*mv;
+}				t_sort;
 
 int	arg_check(int argc, char *argv[], t_aux *args_aux);
 
 /* UTILS */
 int		str_spaced(char *str);
 int		valid_number(char *str);
-void	stack_init(t_stack *stack);
+void	stack_init(t_stack *stack, char flag);
 char	*ops_str(t_aux *args_aux);
 void	sort_elems(t_stack *stack, t_aux *arg_aux);
 int		biggest_elem_stack(t_stack *stack);
 int		smallest_elem_stack(t_stack *stack);
+
+/* SORT UTILS */
+void	best_mv(t_stack *a, t_stack *b, t_aux *arg_aux, t_sort_aux *sort_aux);
 
 /* tirar depois daqui pois era pra ser static */
 void	bring_elem2top(t_stack *stack, t_aux *args_aux, int	elem, char *op);
 int		scnd_biggest_elem(t_stack *stack);
 int		scnd_smallest_elem(t_stack *stack);
 
+int		find_pos_elem(t_stack *stack, int elem);
+// void	find_best_mv(t_stack *stack, t_aux *args_aux, t_sort_aux *sort_aux);
+void	find_best_mv1(t_stack *stack, t_aux *args_aux, t_sort *sort_aux, char c);
 
 void	biggest2top(t_stack *stack, t_aux *args_aux, char *op);
 void	smallest2top(t_stack *stack, t_aux *args_aux);

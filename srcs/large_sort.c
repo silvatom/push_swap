@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 19:29:35 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/22 12:40:32 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/25 13:00:18 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,19 @@ void	large_sort(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux)
 				stack_a->head->elem == args_aux->args_sorted[0]) &&
 				ft_dlstsize(stack_a->node) > 2)
 			{
-				rx(stack_a, &args_aux->ops, "ra\n");
+				// find closest number inside the chunk
+				t_sort_aux	temp;
+				
+				temp.mv = NULL;
+				temp.ck_end1 = sort_aux.ck_end1;
+				temp.ck_end2 = sort_aux.ck_end2; 
+				closest_elem(stack_a, args_aux, &temp);
+				
+				if (ft_strncmp(temp.mv, "ra", ft_strlen("ra")) == 0)
+						rx(stack_a, &args_aux->ops, "ra\n");
+					else
+						rrx(stack_a, &args_aux->ops, "rra\n");
+				// rx(stack_a, &args_aux->ops, "ra\n");
 			}
 			while (stack_a->head->elem != args_aux->args_sorted[0] && stack_a->head->elem != args_aux->args_sorted[args_aux->argc - 1] && i < sort_aux.ck_end2)
 			{
@@ -56,8 +68,6 @@ void	large_sort(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux)
 						rrx(stack_a, &args_aux->ops, "rra\n");
 					sort_aux.mv_qtd--;
 				}
-				// closest_elem
-				// move closes_elem to top
 				px(stack_a, stack_b, &args_aux->ops, "pb\n");
 				free(sort_aux.mv);
 				sort_aux.mv = NULL;
@@ -66,31 +76,42 @@ void	large_sort(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux)
 		}
 		chunk_nbr++;
 	}
+	// biggest2top(stack_a, args_aux, NULL);
 
-	
-	biggest2top(stack_a, args_aux, "ra\n");
 	// b para a
 	while (ft_dlstsize(stack_b->head) != 0)
 	{
-		if (stack_b->head->elem > scnd_biggest_elem(stack_a))
-		{
-			biggest2top(stack_a, args_aux, "ra\n");
-		}
-		else if (stack_b->head->elem > scnd_smallest_elem(stack_a))
-		{
-			find_spot(stack_a, args_aux, stack_b->head->elem, UP);
-			// bring_elem2top(stack_a, args_aux, args_aux->args_sorted[0]);
-			// colocar o +1 maior (ou -1) que o b_head_elem no tail de a
-		}
+		if (ft_dlstsize(stack_a->head) == 12)
+			best_mv(stack_a, stack_b, args_aux, &sort_aux);
 		else
-		{
-			find_spot(stack_a, args_aux, stack_b->head->elem, UP);
-			// 
-			// colocar +1 maior no topo de a
-		}
-		
-		px(stack_a, stack_b, &args_aux->ops, "pa\n");
+			best_mv(stack_a, stack_b, args_aux, &sort_aux);
 	}
+
+	
+	// b para a antigo
+	// while (ft_dlstsize(stack_b->head) != 0)
+	// {
+	// 	// calculate best move
+	// 	// bring the 'best move' number up;
+	// 	if (stack_b->head->elem > scnd_biggest_elem(stack_a))
+	// 	{
+	// 		biggest2top(stack_a, args_aux, NULL);
+	// 	}
+	// 	else if (stack_b->head->elem > scnd_smallest_elem(stack_a))
+	// 	{
+	// 		find_spot(stack_a, args_aux, stack_b->head->elem, UP);
+	// 		// bring_elem2top(stack_a, args_aux, args_aux->args_sorted[0]);
+	// 		// colocar o +1 maior (ou -1) que o b_head_elem no tail de a
+	// 	}
+	// 	else
+	// 	{
+	// 		find_spot(stack_a, args_aux, stack_b->head->elem, UP);
+	// 		// 
+	// 		// colocar +1 maior no topo de a
+	// 	}
+		
+	// 	px(stack_a, stack_b, &args_aux->ops, "pa\n");
+	// }
 	bring_elem2top(stack_a, args_aux, args_aux->args_sorted[0], "ra\n");
 }
 
@@ -140,16 +161,18 @@ int	closest_elem(t_stack *stack, t_aux *args_aux, t_sort_aux *sort_aux)
 int	find_pos_elem(t_stack *stack, int elem)
 {
 	int	index;
+	t_node *tmp;
 
 	index = 0;
-	while (stack->node)
+	tmp = stack->head;
+	while (tmp)
 	{
-		if (stack->node->elem == elem)
+		if (tmp->elem == elem)
 			break ;
 		index++;
-		stack->node = stack->node->next;
+		tmp = tmp->next;
 	}
-	stack->node = stack->head;
+	tmp = NULL;
 	return (index);
 }
 

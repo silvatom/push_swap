@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:56:21 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/21 17:17:27 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/25 10:53:59 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,11 @@ int	valid_number(char *str)
 	return (TRUE);
 }
 
-void	stack_init(t_stack *stack)
+void	stack_init(t_stack *stack, char flag)
 {
 	stack->head = NULL;
 	stack->node = NULL;
+	stack->flag = flag;
 }
 
 char	*ops_str(t_aux *args_aux)
@@ -163,13 +164,35 @@ int	scnd_smallest_elem(t_stack *stack)
 
 void	bring_elem2top(t_stack *stack, t_aux *args_aux, int	elem, char *op)
 {
+	t_sort	sort_aux;
+	
 	if (ft_dlstsize(stack->head) < 2)
 		return ;
+	sort_aux.idx = find_pos_elem(stack, elem);
+	sort_aux.elem = elem;
+	find_best_mv1(stack, args_aux, &sort_aux, stack->flag);
 	while (stack->head->elem != elem)
 	{
+		if (stack->flag == 'a')
+		{
+			if (ft_strncmp(sort_aux.mv, "ra", ft_strlen("ra")) == 0)
+				rx(stack, &args_aux->ops, "ra\n");
+			else
+				rrx(stack, &args_aux->ops, "rra\n");
+		}
+		else
+		{
+			if (ft_strncmp(sort_aux.mv, "rb", ft_strlen("rb")) == 0)
+				rx(stack, &args_aux->ops, "rb\n");
+			else
+				rrx(stack, &args_aux->ops, "rrb\n");
+		}
+		// 	sort_aux.mv_qtd--;
+		// }
 		// find best movement
-		rx(stack, &args_aux->ops, op);
+		// rx(stack, &args_aux->ops, op);
 	}
+	free(sort_aux.mv);
 }
 
 void	bring_elem2tail(t_stack *stack, t_aux *args_aux, int elem)
