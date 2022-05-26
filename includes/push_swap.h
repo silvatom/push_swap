@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:42:46 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/25 13:16:58 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/26 20:50:28 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@
 # endif
 
 # ifndef INT_MAX
-#  define INT_MAX __INT_MAX__
+#  define INT_MAX 2147483647
 # endif
 # ifndef INT_MIN
-#  define INT_MIN (-__INT_MAX__ -1)
+#  define INT_MIN -2147483648
 # endif
 
-#define CHUNKS 2
-#define UP 1
-#define DOWN -1
+# define CHUNKS 2
+# define UP 1
+# define DOWN -1
 
-typedef struct s_dlist t_node;
+typedef struct s_dlist	t_node;
 
 typedef struct s_stack
 {
@@ -50,7 +50,7 @@ typedef struct s_aux
 	int		argc;
 }				t_aux;
 
-typedef	struct s_sort_aux
+typedef struct s_sort_aux
 {
 	int		ck_end1;
 	int		ck_end2;
@@ -61,40 +61,45 @@ typedef	struct s_sort_aux
 	int		has_elem;
 }				t_sort_aux;
 
-typedef	struct s_sort
+typedef struct s_sort
 {
-	int	elem;
-	int	idx;
-	int	mv_qtd;
+	int		elem;
+	int		idx;
+	int		mv_qtd;
 	char	*mv;
 }				t_sort;
 
-int	arg_check(int argc, char *argv[], t_aux *args_aux);
+/* ARG CHECKING */
+int		arg_check(int argc, char *argv[], t_aux *args_aux);
 
-/* UTILS */
+/* FEED STACK */
+void	feed_stack(t_stack *stack_a, t_aux *args_aux);
+
+/* UTILS1 */
 int		str_spaced(char *str);
 int		valid_number(char *str);
 void	stack_init(t_stack *stack, char flag);
 char	*ops_str(t_aux *args_aux);
-void	sort_elems(t_stack *stack, t_aux *arg_aux);
+
+/* UTILS2 */
 int		biggest_elem_stack(t_stack *stack);
 int		smallest_elem_stack(t_stack *stack);
-
-/* SORT UTILS */
-void	best_mv(t_stack *a, t_stack *b, t_aux *arg_aux, t_sort_aux *sort_aux);
-
-/* tirar depois daqui pois era pra ser static */
-void	bring_elem2top(t_stack *stack, t_aux *args_aux, int	elem, char *op);
 int		scnd_biggest_elem(t_stack *stack);
 int		scnd_smallest_elem(t_stack *stack);
 
-int		find_pos_elem(t_stack *stack, int elem);
-// void	find_best_mv(t_stack *stack, t_aux *args_aux, t_sort_aux *sort_aux);
-void	find_best_mv1(t_stack *stack, t_aux *args_aux, t_sort *sort_aux, char c);
+/* SORTING */
+void	sort_elems(t_stack *stack, t_aux *arg_aux);
+void	sort_stack(t_stack *stack_a, t_aux *args_aux);
+void	short_sort(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux);
+void	large_sort(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux);
 
-void	biggest2top(t_stack *stack, t_aux *args_aux, char *op);
-void	smallest2top(t_stack *stack, t_aux *args_aux);
+/* SORT UTILS */
 void	find_spot(t_stack *stack, t_aux *args_aux, int a_elem, int side);
+void	find_best_mv(t_stack *stack, t_aux *args_aux, t_sort *sort_aux, char c);
+void	biggest2top(t_stack *stack, t_aux *args_aux, char *op);
+/* tirar depois daqui pois era pra ser static */
+void	bring_elem2top(t_stack *stack, t_aux *args_aux, int elem, char *op);
+int		find_pos_elem(t_stack *stack, int elem);
 
 /* STACK FUNCTIONS */
 int		stack_push(t_stack *stack, int data);
@@ -112,12 +117,7 @@ void	rr(t_stack *stack_a, t_stack *stack_b, t_list **ops);
 void	rrx(t_stack *stack, t_list **ops, const char *op);
 void	rrr(t_stack *stack_a, t_stack *stack_b, t_list **ops);
 
-/* PROJECT SOURCES */
-void	feed_stack(t_stack *stack_a, t_aux *args_aux);
-void	sort_stack(t_stack *stack_a, t_aux *args_aux);
-
-/* SORTING */
-void	short_sort(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux);
-void	large_sort(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux);
+void	best_mv(t_stack *a, t_stack *b, t_aux *arg_aux, t_sort_aux *sort_aux);
+int		find_pos_elem(t_stack *stack, int elem);
 
 #endif

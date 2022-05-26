@@ -6,19 +6,19 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:46:42 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/14 00:56:15 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/26 12:06:44 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* check equal results */
+/* Check equal results */
 static int	nbr_validation(char **args);
-/* do simple validations to the arguments given */
+/* Do simple validations to the arguments given */
 static int	check_invalid_arg(char *raw_arg, char **arg);
-/* append 'arg' into 'all_args' */
+/* Append 'arg' into 'all_args' */
 static void	join_args(char **actual_args, char *new_arg, int index);
-/* little abstraction to follow the norm */
+/* Little abstraction to follow the norm */
 static int	nbr_checking(char **splitted_args);
 
 int	arg_check(int argc, char *argv[], t_aux *args_aux)

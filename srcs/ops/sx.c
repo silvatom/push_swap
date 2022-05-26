@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 20:48:44 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/12 20:18:33 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/26 20:42:33 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	sx(t_stack *stack, t_list **ops, const char *op)
 {
 	t_node	*tmp;
-	
+
 	if (stack && ft_dlstsize(stack->head) > 1)
 	{
 		tmp = stack->node->next;

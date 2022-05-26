@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:30:26 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/24 19:09:40 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/26 14:34:22 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	stack_push(t_stack *stack, int data)
 		stack->node = new_node;
 	else
 		ft_dlstadd_front(&stack->node, new_node);
-	stack->head = stack->node;	
+	stack->head = stack->node;
 	return (0);
 }
 
@@ -41,13 +41,13 @@ int	stack_pop(t_stack *stack)
 
 int	is_empty(t_node *lst)
 {
-	return !lst;
+	return (!lst);
 }
 
 int	is_sorted_desc(t_stack *stack)
 {
 	t_node	*current;
-	
+
 	if (stack)
 	{
 		if (stack->node == NULL)
