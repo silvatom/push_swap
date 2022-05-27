@@ -6,7 +6,7 @@
 #    By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 16:42:35 by anjose-d          #+#    #+#              #
-#    Updated: 2022/05/26 20:52:15 by anjose-d         ###   ########.fr        #
+#    Updated: 2022/05/27 01:36:13 by anjose-d         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRCS_OPS		=	$(addprefix $(SRCSOPS_DIR)/, $(SRCOPS))
 SRCS_DIR		=	./srcs
 SRCS			=	main.c \
 					arg_check.c utils1.c utils2.c utils_sort.c \
+					find_best_mv.c do_best_mv.c \
 					stack.c feed_stack.c sort_stack.c sort_utils.c \
 					short_sort.c large_sort.c \
 					sort_elems.c \
@@ -69,7 +70,7 @@ valgrind:
 	
 debug:
 	$(CC) -g $(SRCS_PATH) $(INCS) $(LIB_LINK) -o $@
-	gdb --tui ./$@ 0 2 15 3 9 4 1 8
+	gdb --tui ./$@ 3 2 1 4 5 7 0 8 9 6
 	
 re: fclean all
 

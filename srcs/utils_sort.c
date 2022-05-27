@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:55:19 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/26 20:41:09 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/27 00:03:19 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	find_spot(t_stack *stack, t_aux *args_aux, int a_elem, int side)
 	bring_elem2top(stack, args_aux, args_aux->args_sorted[i], "ra\n");
 }
 
-void	find_best_mv(t_stack *stack, t_aux *args_aux, t_sort *sort_aux, char c)
+void	find_mv(t_stack *stack, t_aux *args_aux, t_sort *sort_aux, char c)
 {
 	int		mvs;
 	int		stack_size;
@@ -91,7 +91,7 @@ void	bring_elem2top(t_stack *stack, t_aux *args_aux, int elem, char *op)
 		return ;
 	sort_aux.idx = find_pos_elem(stack, elem);
 	sort_aux.elem = elem;
-	find_best_mv(stack, args_aux, &sort_aux, stack->flag);
+	find_mv(stack, args_aux, &sort_aux, stack->flag);
 	while (stack->head->elem != elem)
 	{
 		if (stack->flag == 'a')

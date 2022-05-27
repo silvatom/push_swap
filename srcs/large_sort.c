@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 19:29:35 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/26 16:06:32 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/26 21:23:13 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ void	send_half(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux);
 
 void	large_sort(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux)
 {
-	t_sort_aux	sort_aux;
-
-	sort_aux.mv = NULL;
 	while (ft_dlstsize(stack_a->head) > 2)
 	{
 		if (ft_dlstsize(stack_a->head) > args_aux->argc / CHUNKS)
@@ -32,7 +29,7 @@ void	large_sort(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux)
 	}
 	biggest2top(stack_a, args_aux, NULL);
 	while (ft_dlstsize(stack_b->head) != 0)
-		best_mv(stack_a, stack_b, args_aux, &sort_aux);
+		send_back(stack_a, stack_b, args_aux);
 	bring_elem2top(stack_a, args_aux, args_aux->args_sorted[0], "ra\n");
 }
 

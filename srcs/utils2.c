@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:43:30 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/26 15:03:49 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/27 01:33:30 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,12 @@ int	scnd_smallest_elem(t_stack *stack)
 	}
 	stack->node = stack->head;
 	return (scnd_smallest);
+}
+
+void	sort_aux_init(t_sort *sort_aux)
+{
+	sort_aux->elem = 0;
+	sort_aux->idx = 0;
+	sort_aux->mv = NULL;
+	sort_aux->mv_qtd = INT_MAX / 2;
 }
