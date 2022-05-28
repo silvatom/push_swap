@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 01:11:29 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/27 01:32:37 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/28 00:58:45 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ static void	sync_mv(t_stack *a, t_stack *b, t_aux *arg_aux)
 			arg_aux->a_aux->mv_qtd--;
 			arg_aux->b_aux->mv_qtd--;
 		}
-		bring_elem2top(a, arg_aux, arg_aux->a_aux->elem, "ra\n");
-		bring_elem2top(b, arg_aux, arg_aux->b_aux->elem, "rb\n");
+		bring_elem2top(a, arg_aux, arg_aux->a_aux->elem);
+		bring_elem2top(b, arg_aux, arg_aux->b_aux->elem);
 	}
 	else
 	{
@@ -66,19 +66,19 @@ static void	sync_mv(t_stack *a, t_stack *b, t_aux *arg_aux)
 			arg_aux->a_aux->mv_qtd--;
 			arg_aux->b_aux->mv_qtd--;
 		}
-		bring_elem2top(a, arg_aux, arg_aux->a_aux->elem, "rra\n");
-		bring_elem2top(b, arg_aux, arg_aux->b_aux->elem, "rrb\n");
+		bring_elem2top(a, arg_aux, arg_aux->a_aux->elem);
+		bring_elem2top(b, arg_aux, arg_aux->b_aux->elem);
 	}
 }
 
 static void	async_mv(t_stack *a, t_stack *b, t_aux *arg_aux)
 {
 	if (ft_strncmp(arg_aux->a_aux->mv, "ra", ft_strlen("ra")) == 0)
-		bring_elem2top(a, arg_aux, arg_aux->a_aux->elem, "ra\n");
+		bring_elem2top(a, arg_aux, arg_aux->a_aux->elem);
 	if (ft_strncmp(arg_aux->b_aux->mv, "rb", ft_strlen("rb")) == 0)
-		bring_elem2top(b, arg_aux, arg_aux->b_aux->elem, "rb\n");
+		bring_elem2top(b, arg_aux, arg_aux->b_aux->elem);
 	if (ft_strncmp(arg_aux->a_aux->mv, "rra", ft_strlen("rra")) == 0)
-		bring_elem2top(a, arg_aux, arg_aux->a_aux->elem, "rra\n");
+		bring_elem2top(a, arg_aux, arg_aux->a_aux->elem);
 	if (ft_strncmp(arg_aux->b_aux->mv, "rrb", ft_strlen("rrb")) == 0)
-		bring_elem2top(b, arg_aux, arg_aux->b_aux->elem, "rrb\n");
+		bring_elem2top(b, arg_aux, arg_aux->b_aux->elem);
 }

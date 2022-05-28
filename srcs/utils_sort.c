@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:55:19 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/27 00:03:19 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/28 00:57:34 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,13 @@ void	find_spot(t_stack *stack, t_aux *args_aux, int a_elem, int side)
 			&& i < args_aux->argc)
 			i += side;
 	}
-	bring_elem2top(stack, args_aux, args_aux->args_sorted[i], "ra\n");
+	bring_elem2top(stack, args_aux, args_aux->args_sorted[i]);
 }
 
-void	find_mv(t_stack *stack, t_aux *args_aux, t_sort *sort_aux, char c)
+void	find_mv(t_stack *stack, t_sort *sort_aux, char c)
 {
-	int		mvs;
 	int		stack_size;
-	char	*mv;
 
-	mvs = 0;
 	sort_aux->idx = find_pos_elem(stack, sort_aux->elem);
 	stack_size = ft_dlstsize(stack->head);
 	if (sort_aux->idx <= (stack_size / 2))
@@ -55,14 +52,14 @@ void	find_mv(t_stack *stack, t_aux *args_aux, t_sort *sort_aux, char c)
 	}
 }
 
-void	biggest2top(t_stack *stack, t_aux *args_aux, char *op)
+void	biggest2top(t_stack *stack, t_aux *args_aux)
 {
 	int	biggest;
 
 	if (ft_dlstsize(stack->head) < 2)
 		return ;
 	biggest = biggest_elem_stack(stack);
-	bring_elem2top(stack, args_aux, biggest, op);
+	bring_elem2top(stack, args_aux, biggest);
 }
 
 int	find_pos_elem(t_stack *stack, int elem)
@@ -83,7 +80,7 @@ int	find_pos_elem(t_stack *stack, int elem)
 	return (index);
 }
 
-void	bring_elem2top(t_stack *stack, t_aux *args_aux, int elem, char *op)
+void	bring_elem2top(t_stack *stack, t_aux *args_aux, int elem)
 {
 	t_sort	sort_aux;
 
@@ -91,7 +88,7 @@ void	bring_elem2top(t_stack *stack, t_aux *args_aux, int elem, char *op)
 		return ;
 	sort_aux.idx = find_pos_elem(stack, elem);
 	sort_aux.elem = elem;
-	find_mv(stack, args_aux, &sort_aux, stack->flag);
+	find_mv(stack, &sort_aux, stack->flag);
 	while (stack->head->elem != elem)
 	{
 		if (stack->flag == 'a')

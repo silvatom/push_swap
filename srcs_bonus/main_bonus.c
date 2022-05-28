@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 16:42:33 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/28 00:46:02 by anjose-d         ###   ########.fr       */
+/*   Created: 2022/05/28 00:43:08 by anjose-d          #+#    #+#             */
+/*   Updated: 2022/05/28 01:54:33 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 int	main(int argc, char *argv[])
 {
@@ -24,14 +24,15 @@ int	main(int argc, char *argv[])
 		return (-1);
 	}
 	feed_stack(&stack_a, &arg_aux);
-	sort_elems(&stack_a, &arg_aux);
-	sort_stack(&stack_a, &arg_aux);
-	ops = ops_str(&arg_aux);
-	ft_putstr_fd(ops, STDOUT_FILENO);
-	free(ops);
+	// // do the operations
+	// // see if the operations did the job (check_desc_ordered and stack_b is empty)
+	// ops = ops_str(&arg_aux);
+	// ft_putstr_fd(ops, fd);
+	
+	// free(ops);
 	ft_dlstclear(&stack_a.head, &free);
-	ft_lstclear(&arg_aux.ops, &free);
-	free(arg_aux.args_sorted);
+	// ft_lstclear(&arg_aux.ops, &free);
+	// free(arg_aux.args_sorted);
 	ft_destroy_matrix(arg_aux.args_raw);
 	return (0);
 }

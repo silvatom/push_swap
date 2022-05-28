@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:36:49 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/27 01:13:37 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/28 01:01:15 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 /* find the best elem in stack A to the element from B */
 void	elem_from_a(t_stack *a, t_stack *b, t_aux *arg_aux, t_sort *aux_elem_a);
-
-void	find_mv(t_stack *stack, t_aux *args_aux, t_sort *sort_aux, char c);
 
 /* find the spot (or element) the B elem needs to have on top of stack A */
 int		find_elem(t_stack *stack, t_aux *args_aux, int b_elem, int side);
@@ -38,8 +36,8 @@ void	send_back(t_stack *a, t_stack *b, t_aux *arg_aux)
 		elem_from_a(a, b, arg_aux, &temp_a);
 		temp_b.elem = b->node->elem;
 		temp_b.idx = find_pos_elem(b, temp_b.elem);
-		find_mv(a, arg_aux, &temp_a, 'a');
-		find_mv(b, arg_aux, &temp_b, 'b');
+		find_mv(a, &temp_a, 'a');
+		find_mv(b, &temp_b, 'b');
 		best_mv(&elem_a_aux, &elem_b_aux, &temp_a, &temp_b);
 		b->node = b->node->next;
 	}
@@ -76,11 +74,9 @@ void	elem_from_a(t_stack *a, t_stack *b, t_aux *arg_aux, t_sort *aux_elem_a)
 	int	a_elem;
 	int	b_elem;
 	int	idx_elem_a;
-	int	idx_elem_b;
 	int	scnd_biggest_from_a;
 
 	b_elem = b->node->elem;
-	idx_elem_b = find_pos_elem(b, b_elem);
 	a_elem = 0;
 	scnd_biggest_from_a = scnd_biggest_elem(a);
 	if (b_elem > scnd_biggest_from_a)
