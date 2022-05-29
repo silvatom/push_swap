@@ -6,15 +6,16 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 00:44:21 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/27 01:33:21 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/29 18:25:53 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
+/* Compare the last mv found with the current one */
 static void	cmp_mv(t_sort *a_aux, t_sort *b_aux, t_sort *tmp_a, t_sort *tmp_b);
 
-/* Find the best move combination and compare with the previously got */
+/* Find the best move combination */
 void	best_mv(t_sort *a_aux, t_sort *b_aux, t_sort *temp_a, t_sort *temp_b)
 {
 	if (a_aux->mv_qtd + b_aux->mv_qtd

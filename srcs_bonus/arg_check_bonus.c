@@ -6,11 +6,11 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 15:46:42 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/28 01:40:13 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:21:09 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 /* Check equal results */
 static int	nbr_validation(char **args);

@@ -6,14 +6,14 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 19:29:35 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/28 01:02:32 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/29 18:27:59 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /* Send the lesser half of A to B */
-void	send_half(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux);
+static void	send_half(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux);
 
 void	large_sort(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux)
 {
@@ -33,7 +33,7 @@ void	large_sort(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux)
 	bring_elem2top(stack_a, args_aux, args_aux->args_sorted[0]);
 }
 
-void	send_half(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux)
+static void	send_half(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux)
 {
 	int	i;
 	int	idx_elem;

@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_utils.c                                       :+:      :+:    :+:   */
+/*   send_back.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:36:49 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/28 01:01:15 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/29 18:40:39 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /* find the best elem in stack A to the element from B */
-void	elem_from_a(t_stack *a, t_stack *b, t_aux *arg_aux, t_sort *aux_elem_a);
+static void	elem_from_a(t_stack *a, t_stack *b, t_aux *arg_aux, t_sort *aux_a);
 
 /* find the spot (or element) the B elem needs to have on top of stack A */
-int		find_elem(t_stack *stack, t_aux *args_aux, int b_elem, int side);
+static int	find_elem(t_stack *stack, t_aux *args_aux, int b_elem, int side);
 
 void	send_back(t_stack *a, t_stack *b, t_aux *arg_aux)
 {
@@ -47,7 +47,7 @@ void	send_back(t_stack *a, t_stack *b, t_aux *arg_aux)
 	do_best_mv(a, b, arg_aux);
 }
 
-int	find_elem(t_stack *stack, t_aux *args_aux, int elem, int side)
+static int	find_elem(t_stack *stack, t_aux *args_aux, int elem, int side)
 {
 	int	i;
 
@@ -69,7 +69,7 @@ int	find_elem(t_stack *stack, t_aux *args_aux, int elem, int side)
 	return (args_aux->args_sorted[i]);
 }
 
-void	elem_from_a(t_stack *a, t_stack *b, t_aux *arg_aux, t_sort *aux_elem_a)
+static void	elem_from_a(t_stack *a, t_stack *b, t_aux *arg_aux, t_sort *aux_a)
 {
 	int	a_elem;
 	int	b_elem;
@@ -89,6 +89,6 @@ void	elem_from_a(t_stack *a, t_stack *b, t_aux *arg_aux, t_sort *aux_elem_a)
 		a_elem = find_elem(a, arg_aux, b_elem, UP);
 		idx_elem_a = find_pos_elem(a, a_elem);
 	}
-	aux_elem_a->elem = a_elem;
-	aux_elem_a->idx = idx_elem_a;
+	aux_a->elem = a_elem;
+	aux_a->idx = idx_elem_a;
 }

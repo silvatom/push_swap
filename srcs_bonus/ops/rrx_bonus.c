@@ -6,13 +6,13 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 20:48:38 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/28 01:39:44 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/29 17:42:11 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
-void	rrx(t_stack *stack, t_list **ops, const char *op)
+void	rrx(t_stack *stack)
 {
 	t_node		*tail;
 
@@ -25,13 +25,10 @@ void	rrx(t_stack *stack, t_list **ops, const char *op)
 		stack->node = tail;
 		stack->head = stack->node;
 	}
-	if (op != NULL)
-		ft_lstadd_back(ops, ft_lstnew((void *)op));
 }
 
-void	rrr(t_stack *stack_a, t_stack *stack_b, t_list **ops)
+void	rrr(t_stack *stack_a, t_stack *stack_b)
 {
-	rrx(stack_a, ops, NULL);
-	rrx(stack_b, ops, NULL);
-	ft_lstadd_back(ops, ft_lstnew("rrr\n"));
+	rrx(stack_a);
+	rrx(stack_b);
 }

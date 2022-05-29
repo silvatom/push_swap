@@ -6,13 +6,13 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 20:48:34 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/28 01:39:59 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/28 18:24:58 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
-void	px(t_stack *stack_a, t_stack *stack_b, t_list **ops, char const *op)
+void	px(t_stack *stack_a, t_stack *stack_b, char const *op)
 {
 	int		popped;
 
@@ -32,5 +32,4 @@ void	px(t_stack *stack_a, t_stack *stack_b, t_list **ops, char const *op)
 			stack_push(stack_b, popped);
 		}
 	}
-	ft_lstadd_back(ops, ft_lstnew((void *)op));
 }

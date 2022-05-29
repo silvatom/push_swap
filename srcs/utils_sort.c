@@ -6,27 +6,27 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 14:55:19 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/28 00:57:34 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/29 18:43:31 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	find_spot(t_stack *stack, t_aux *args_aux, int a_elem, int side)
-{
-	int	i;
+// void	find_spot(t_stack *stack, t_aux *args_aux, int a_elem, int side)
+// {
+// 	int	i;
 
-	i = 0;
-	while (args_aux->args_sorted[i] != a_elem)
-		i++;
-	if (side > 0)
-	{
-		while (!has_element(stack, args_aux->args_sorted[i])
-			&& i < args_aux->argc)
-			i += side;
-	}
-	bring_elem2top(stack, args_aux, args_aux->args_sorted[i]);
-}
+// 	i = 0;
+// 	while (args_aux->args_sorted[i] != a_elem)
+// 		i++;
+// 	if (side > 0)
+// 	{
+// 		while (!has_element(stack, args_aux->args_sorted[i])
+// 			&& i < args_aux->argc)
+// 			i += side;
+// 	}
+// 	bring_elem2top(stack, args_aux, args_aux->args_sorted[i]);
+// }
 
 void	find_mv(t_stack *stack, t_sort *sort_aux, char c)
 {

@@ -6,24 +6,24 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/14 19:13:17 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/26 12:24:33 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/29 18:32:43 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	short_three(t_stack *stack_a, t_aux *args_aux);
+static void	sort_three(t_stack *stack_a, t_aux *args_aux);
 static void	until_a_3(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux);
 static void	send_to_a(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux);
 
 void	short_sort(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux)
 {
 	until_a_3(stack_a, stack_b, args_aux);
-	short_three(stack_a, args_aux);
+	sort_three(stack_a, args_aux);
 	send_to_a(stack_a, stack_b, args_aux);
 }
 
-void	short_three(t_stack *stack_a, t_aux *args_aux)
+static void	sort_three(t_stack *stack_a, t_aux *args_aux)
 {
 	if (args_aux->argc == 2)
 	{
@@ -50,7 +50,7 @@ void	short_three(t_stack *stack_a, t_aux *args_aux)
 		rx(stack_a, &args_aux->ops, "ra\n");
 }
 
-void	until_a_3(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux)
+static void	until_a_3(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux)
 {
 	while (ft_dlstsize(stack_a->head) > 3)
 	{
@@ -65,7 +65,7 @@ void	until_a_3(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux)
 	}
 }
 
-void	send_to_a(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux)
+static void	send_to_a(t_stack *stack_a, t_stack *stack_b, t_aux *args_aux)
 {
 	int	next_idx;
 

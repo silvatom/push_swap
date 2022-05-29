@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 16:08:47 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/26 12:48:37 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/29 17:11:56 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	sort_stack(t_stack *stack_a, t_aux *args_aux)
 
 	args_aux->ops = NULL;
 	stack_init(&stack_b, 'b');
-	if (is_sorted_desc(stack_a))
+	if (is_sorted_asc(stack_a))
 		return ;
 	if (args_aux->argc <= 5)
 		short_sort(stack_a, &stack_b, args_aux);

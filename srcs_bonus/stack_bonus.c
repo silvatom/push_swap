@@ -6,11 +6,11 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:30:26 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/28 01:40:34 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/29 19:07:06 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 int	stack_push(t_stack *stack, int data)
 {
@@ -44,9 +44,9 @@ int	is_empty(t_node *lst)
 	return (!lst);
 }
 
-int	is_sorted_desc(t_stack *stack)
+int	is_sorted_asc(t_stack *stack)
 {
-	t_node	*current;
+	t_node	*next;
 
 	if (stack)
 	{
@@ -54,8 +54,8 @@ int	is_sorted_desc(t_stack *stack)
 			return (FALSE);
 		while (stack->node->next != NULL)
 		{
-			current = stack->node->next;
-			if (current->elem <= stack->node->elem)
+			next = stack->node->next;
+			if (next->elem <= stack->node->elem)
 			{
 				stack->node = stack->head;
 				return (FALSE);

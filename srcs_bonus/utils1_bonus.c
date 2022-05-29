@@ -6,11 +6,11 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:56:21 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/28 01:40:40 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/29 19:08:20 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 int	str_spaced(char *str)
 {
