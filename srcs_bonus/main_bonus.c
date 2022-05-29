@@ -6,7 +6,7 @@
 /*   By: anjose-d <anjose-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 00:43:08 by anjose-d          #+#    #+#             */
-/*   Updated: 2022/05/29 19:13:57 by anjose-d         ###   ########.fr       */
+/*   Updated: 2022/05/29 19:32:51 by anjose-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char *argv[])
 	{
 		ft_putstr_fd("Error\n", STDERR_FILENO);
 		free_vars(&stack_a, &arg_aux);
-		return (255);
+		return (-1);
 	}
 	checker(&stack_a, &arg_aux);
 	free_vars(&stack_a, &arg_aux);
